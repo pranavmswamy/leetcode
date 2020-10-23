@@ -4,6 +4,29 @@
 #         self.val = val
 #         self.next = next
 
+# RECURSIVE VERSION W/O global head.
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        # edge case
+        if not head:
+            return None
+        
+        # base case
+        if not head.next:
+            return head
+        
+        # collect head in new node and continue recursive call
+        new_head = self.reverseList(head.next)
+        
+        # reverse link
+        head.next.next = head
+        head.next = None
+        
+        # return new_head
+        return new_head
+
+
+
 # recursive version
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
